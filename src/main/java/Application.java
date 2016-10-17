@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Application
 {
-    public static void main(String[] args) throws TransformerException, FileNotFoundException
+    public static void main(String[] args) throws FileNotFoundException
     {
         long time = System.currentTimeMillis();
 
@@ -41,18 +41,11 @@ public class Application
         System.out.println("Tickes: " + tickets.size());
     }
 
-    public static void saveTicketsToFile(Collection<String> tickets)
+    public static void saveTicketsToFile(Collection<String> tickets) throws FileNotFoundException
     {
-        try
-        {
-            PrintWriter out = new PrintWriter("Tickets.txt");
-            out.println(tickets);
-            out.close();
-        }
-        catch (FileNotFoundException e)
-        {
-            e.printStackTrace();
-        }
+        PrintWriter out = new PrintWriter("Tickets.txt");
+        out.println(tickets);
+        out.close();
     }
 }
 
