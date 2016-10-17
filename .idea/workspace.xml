@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="c10bebca-f4e3-4775-9ff2-1988ed5246b8" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Combination.java" afterPath="$PROJECT_DIR$/src/main/java/Combination.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="142c48cb-814b-452a-8f61-62ea74f0887d" name="Failed commit: Default" comment="Test Commit" />
     <ignored path="CombinationTicket.iws" />
@@ -34,8 +33,8 @@
       <file leaf-file-name="Application.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Application.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="527">
-              <caret line="9" column="62" selection-start-line="9" selection-start-column="62" selection-end-line="9" selection-end-column="62" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="76" max-vertical-offset="527">
+              <caret line="12" column="55" selection-start-line="12" selection-start-column="55" selection-end-line="12" selection-end-column="55" />
               <folding>
                 <element signature="method#saveTicketsToFile#0;class#Application#0" expanded="false" />
                 <element signature="method#createCombinations#0;class#Application#0" expanded="false" />
@@ -48,8 +47,8 @@
       <file leaf-file-name="Combination.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Combination.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.39384118" vertical-offset="1508" max-vertical-offset="2125">
-              <caret line="103" column="5" selection-start-line="103" selection-start-column="5" selection-end-line="103" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.50405186" vertical-offset="1236" max-vertical-offset="2057">
+              <caret line="91" column="45" selection-start-line="91" selection-start-column="45" selection-end-line="91" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -602,12 +601,12 @@
       <workItem from="1476711321363" duration="1474000" />
       <workItem from="1476716856593" duration="195000" />
       <workItem from="1476719438670" duration="969000" />
-      <workItem from="1476726461025" duration="1320000" />
+      <workItem from="1476726461025" duration="1659000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="88104000" />
+    <option name="totallyTimeSpent" value="88443000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1378" height="780" extended-state="0" />
@@ -1102,8 +1101,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Application.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="527">
-          <caret line="9" column="62" selection-start-line="9" selection-start-column="62" selection-end-line="9" selection-end-column="62" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="76" max-vertical-offset="527">
+          <caret line="12" column="55" selection-start-line="12" selection-start-column="55" selection-end-line="12" selection-end-column="55" />
           <folding>
             <element signature="method#saveTicketsToFile#0;class#Application#0" expanded="false" />
             <element signature="method#createCombinations#0;class#Application#0" expanded="false" />
@@ -1114,8 +1113,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Combination.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39384118" vertical-offset="1508" max-vertical-offset="2125">
-          <caret line="103" column="5" selection-start-line="103" selection-start-column="5" selection-end-line="103" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.50405186" vertical-offset="1236" max-vertical-offset="2057">
+          <caret line="91" column="45" selection-start-line="91" selection-start-column="45" selection-end-line="91" selection-end-column="45" />
           <folding />
         </state>
       </provider>

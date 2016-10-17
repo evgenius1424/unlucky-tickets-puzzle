@@ -95,11 +95,9 @@ public class Combination
         }
 
         //Division.Division
-        if (!isZero(b) && !isZero(c))
+        if (!isZero(b) && !isZero(c) && isQuotientInt(a, b) && isQuotientInt(b, c))
         {
-            double x = (double)a / (double)b / (double)c;
-
-            if (isInteger(x)) { addValue((int)x); }
+            addValue(a / b / c);
         }
     }
 
@@ -107,11 +105,6 @@ public class Combination
     private void addValue(int value)
     {
         if (value > -1) { values.add(value); }
-    }
-
-    private boolean isInteger(double x)
-    {
-        return x == Math.round(x);
     }
 
     private boolean isZero(int x)
