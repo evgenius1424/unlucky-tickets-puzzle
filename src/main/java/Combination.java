@@ -56,6 +56,7 @@ public class Combination
         //Multiplication
         addValue(a * b + c);
         addValue(a * b - c);
+        addValue(a * (b - c));
         addValue(a * b * c);
 
         if (!isZero(c) && isQuotientInt(a * b, c))
