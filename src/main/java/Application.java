@@ -11,7 +11,7 @@ public class Application
         Set<String> tickets = createUnluckyTicketsFromCombinations(combinations);
 
         System.out.println("Time: " + String.valueOf(System.currentTimeMillis() - time));
-        System.out.println("Tickes: " + tickets.size());
+        System.out.println("Tickets: " + tickets.size());
     }
 
     private static void saveTicketsToFile(Collection<String> tickets) throws FileNotFoundException
