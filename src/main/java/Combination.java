@@ -85,11 +85,9 @@ public class Combination
         }
 
         //Division.Multiplication
-        if (!isZero(b))
+        if (!isZero(b) && isQuotientInt(a, b))
         {
-            double x = (double)a / (double)b * (double)c;
-
-            if (isInteger(x)) { addValue((int)x); }
+            addValue(a / b * c);
         }
         if (!isZero(b * c) && isQuotientInt(a, (b * c)))
         {
