@@ -84,7 +84,7 @@ public class Application
     private static void saveTicketsToFile(Collection<String> tickets) throws FileNotFoundException
     {
         PrintWriter out = new PrintWriter("Tickets.txt");
-        out.println(tickets);
+        tickets.forEach(out::println);
         out.close();
     }
 }
