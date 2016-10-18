@@ -8,7 +8,7 @@ public class Application
         long time = System.currentTimeMillis();
 
         List<Combination> combinations = createCombinations();
-        Set<String> tickets = createUnluckyTicketsFromCombinationsV2(combinations);
+        Collection<String> tickets = createUnluckyTicketsFromCombinationsV2(combinations);
 
         System.out.println("Time: " + String.valueOf(System.currentTimeMillis() - time));
         System.out.println("Tickets: " + tickets.size());
@@ -28,9 +28,9 @@ public class Application
         return combinations;
     }
 
-    private static Set<String> createUnluckyTicketsFromCombinations(List<Combination> combinations)
+    private static Collection<String> createUnluckyTicketsFromCombinations(Collection<Combination> combinations)
     {
-        Set<String> tickets = new TreeSet<>();
+        Set<String> tickets = new HashSet<>();
 
         for (Combination comb1 : combinations)
         {
@@ -54,16 +54,18 @@ public class Application
         return tickets;
     }
 
-    private static Set<String> createUnluckyTicketsFromCombinationsV2(List<Combination> combinations)
+    private static Collection<String> createUnluckyTicketsFromCombinationsV2(List<Combination> combinations)
     {
         Set<String> tickets = new HashSet<>();
 
-        for (Combination comb1 : combinations)
+        for (int comb1Index = 0; comb1Index < combinations.size(); comb1Index++)
         {
             // label for early exit from nested loop
             nextPair:
-            for (Combination comb2 : combinations)
+            for (int comb2Index = comb1Index + 1; comb2Index < combinations.size(); comb2Index++)
             {
+                Combination comb1 = combinations.get(comb1Index);
+                Combination comb2 = combinations.get(comb2Index);
                 for (Integer x : comb1.getValues())
                 {
                     if (comb2.getValues().contains(x))
@@ -75,6 +77,7 @@ public class Application
                 tickets.add(comb2.toString() + comb1.toString());
             }
         }
+
         return tickets;
     }
 
