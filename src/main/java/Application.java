@@ -14,13 +14,6 @@ public class Application
         System.out.println("Tickets: " + tickets.size());
     }
 
-    private static void saveTicketsToFile(Collection<String> tickets) throws FileNotFoundException
-    {
-        PrintWriter out = new PrintWriter("Tickets.txt");
-        out.println(tickets);
-        out.close();
-    }
-
     private static List<Combination> createCombinations()
     {
         List<Combination> combinations = new ArrayList<>(1000);
@@ -36,7 +29,7 @@ public class Application
     }
 
     private static Set<String> createUnluckyTicketsFromCombinations(List<Combination> combinations)
-     {
+    {
         Set<String> tickets = new TreeSet<>();
 
         for (Combination comb1 : combinations)
@@ -59,6 +52,39 @@ public class Application
         }
 
         return tickets;
+    }
+
+    private static Set<String> createUnluckyTicketsFromCombinationsV2(List<Combination> combinations)
+    {
+        Set<String> tickets = new HashSet<>();
+
+        for (int comb1Index = 0; comb1Index < combinations.size(); comb1Index++)
+        {
+            nextPair:
+            // labeling for early exit from nested loop
+            for (int comb2Index = comb1Index + 1; comb2Index < combinations.size(); comb2Index++)
+            {
+                Combination comb1 = combinations.get(comb1Index);
+                Combination comb2 = combinations.get(comb2Index);
+                for (Integer x : comb1.getValues())
+                {
+                    if (comb2.getValues().contains(x))
+                    {
+                        continue nextPair;
+                    }
+                }
+                tickets.add(comb1.toString() + comb2.toString());
+                tickets.add(comb2.toString() + comb1.toString());
+            }
+        }
+        return tickets;
+    }
+
+    private static void saveTicketsToFile(Collection<String> tickets) throws FileNotFoundException
+    {
+        PrintWriter out = new PrintWriter("Tickets.txt");
+        out.println(tickets);
+        out.close();
     }
 }
 
