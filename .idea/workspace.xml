@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="c10bebca-f4e3-4775-9ff2-1988ed5246b8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Application.java" afterPath="$PROJECT_DIR$/src/main/java/Application.java" />
     </list>
     <list id="142c48cb-814b-452a-8f61-62ea74f0887d" name="Failed commit: Default" comment="Test Commit" />
@@ -802,12 +801,12 @@
       <workItem from="1476719438670" duration="969000" />
       <workItem from="1476726461025" duration="1659000" />
       <workItem from="1476769758445" duration="737000" />
-      <workItem from="1476771174989" duration="742000" />
+      <workItem from="1476771174989" duration="2512000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89922000" />
+    <option name="totallyTimeSpent" value="91692000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -870,7 +869,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="35" />
+      <option name="time" value="38" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">

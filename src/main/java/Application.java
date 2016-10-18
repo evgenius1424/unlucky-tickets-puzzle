@@ -8,7 +8,7 @@ public class Application
         long time = System.currentTimeMillis();
 
         List<Combination> combinations = createCombinations();
-        Set<String> tickets = createUnluckyTicketsFromCombinations(combinations);
+        Set<String> tickets = createUnluckyTicketsFromCombinationsV2(combinations);
 
         System.out.println("Time: " + String.valueOf(System.currentTimeMillis() - time));
         System.out.println("Tickets: " + tickets.size());
@@ -58,14 +58,12 @@ public class Application
     {
         Set<String> tickets = new HashSet<>();
 
-        for (int comb1Index = 0; comb1Index < combinations.size(); comb1Index++)
+        for (Combination comb1 : combinations)
         {
+            // label for early exit from nested loop
             nextPair:
-            // labeling for early exit from nested loop
-            for (int comb2Index = comb1Index + 1; comb2Index < combinations.size(); comb2Index++)
+            for (Combination comb2 : combinations)
             {
-                Combination comb1 = combinations.get(comb1Index);
-                Combination comb2 = combinations.get(comb2Index);
                 for (Integer x : comb1.getValues())
                 {
                     if (comb2.getValues().contains(x))
