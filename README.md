@@ -1,4 +1,4 @@
-Application for generating UnluckyTickets
+Application for generating Unlucky Tickets
 <br />
 Link: https://habrahabr.ru/post/312920
 <br />
