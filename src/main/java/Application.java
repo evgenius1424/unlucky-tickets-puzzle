@@ -18,8 +18,8 @@ public class Application
     {
         List<Combination> combinations = new ArrayList<>(1000);
 
-        PermutationsWithRepetition permutationUtil = new PermutationsWithRepetition(new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 0}, 3);
-        int[][] permutations = permutationUtil.getPermutations();
+        PermutationsWithRepetition permutationsUtil = new PermutationsWithRepetition(new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 0}, 3);
+        int[][] permutations = permutationsUtil.getPermutations();
         for (int[] x : permutations)
         {
             combinations.add(new Combination(x[0], x[1], x[2]));
