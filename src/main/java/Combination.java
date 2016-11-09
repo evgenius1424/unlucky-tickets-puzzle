@@ -15,7 +15,7 @@ public class Combination
         values = new TreeSet<>();
         permutationsUtil = new PermutationsNoRepetition();
 
-        Set<String> permutations = getPermutations(x, y, z);
+        Set<String> permutations = createPermutations(x, y, z);
 
         for (String permutation : permutations)
         {
@@ -24,7 +24,7 @@ public class Combination
         }
     }
 
-    private Set<String> getPermutations(int a, int b, int c)
+    private Set<String> createPermutations(int a, int b, int c)
     {
         int[] arr = {a, b, c};
 
