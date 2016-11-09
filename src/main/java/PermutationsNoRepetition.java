@@ -1,21 +1,7 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class PermutationsNoRepetition
 {
-    public  Set<String> filteredOrders(int[] arr) {
-
-        Set<String> s = new HashSet<String>();
-        for (StringBuilder sb : orders(arr)) {
-
-            s.add(sb.toString());
-        }
-        return s;
-    }
-
     public  List<String> ordersAsStrings(int[] arr) {
 
         List<String> l = new ArrayList<String>();
@@ -26,7 +12,7 @@ public class PermutationsNoRepetition
         return l;
     }
 
-    public  List<StringBuilder> orders(int[] arr) {
+    private   List<StringBuilder> orders(int[] arr) {
 
         if (arr.length == 2) {
 
