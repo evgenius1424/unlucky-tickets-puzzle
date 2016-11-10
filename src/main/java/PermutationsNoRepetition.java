@@ -1,11 +1,14 @@
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class PermutationsNoRepetition
 {
     public static List<String> getPermutationsList(int[] arr)
     {
-        List<String> l = getPermutations(arr).stream().map(StringBuilder::toString).collect(Collectors.toList());
+        List<String> l = new ArrayList<>();
+        for (StringBuilder sb : getPermutations(arr))
+        {
+            l.add(sb.toString());
+        }
         return l;
     }
 
