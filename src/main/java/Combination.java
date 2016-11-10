@@ -4,7 +4,6 @@ public class Combination
 {
     private int x, y, z;
     private Set<Integer> values;
-    private PermutationsNoRepetition permutationsUtil;
 
     public Combination(int x, int y, int z)
     {
@@ -13,26 +12,22 @@ public class Combination
         this.z = z;
 
         values = new TreeSet<>();
-        permutationsUtil = new PermutationsNoRepetition();
 
-        Set<String> permutations = createPermutations(x, y, z);
-
-        for (String permutation : permutations)
-        {
-            char[] numbers = permutation.toCharArray();
-            countValues((int)numbers[0] - 48, (int)numbers[1] - 48, (int)numbers[2] - 48);
-        }
+        int[] arr = {x, y, z};
+        Set<String> permutations = new HashSet<>(PermutationsNoRepetition.getPermutationsList(arr));
+        countValuesForAllPermutations(permutations);
     }
 
-    private Set<String> createPermutations(int a, int b, int c)
+    private void countValuesForAllPermutations(Collection<String> permutations)
     {
-        int[] arr = {a, b, c};
-
-        Set<String> permutations = new HashSet<>();
-
-        permutations.addAll(permutationsUtil.ordersAsStrings(arr));
-
-        return permutations;
+        for (String permutation : permutations)
+        {
+            int a, b, c;
+            a = Character.getNumericValue(permutation.charAt(0));
+            b = Character.getNumericValue(permutation.charAt(1));
+            c = Character.getNumericValue(permutation.charAt(2));
+            countValues(a, b, c);
+        }
     }
 
     private void countValues(int a, int b, int c)
