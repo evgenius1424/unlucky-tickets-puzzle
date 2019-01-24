@@ -1,27 +1,26 @@
 package task;
 
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.Collection;
+import java.util.HashSet;
 
 import static java.lang.String.format;
-import static task.Util.getPermutationsNotRepetitions;
+import static task.Util.getPermutationsNoRepetitions;
 
 public class Combination {
     private final int x, y, z;
-    private final Set<Integer> values;
+    private final Collection<Integer> values;
 
     Combination(int x, int y, int z) {
         this.x = x;
         this.y = y;
         this.z = z;
 
-        values = new TreeSet<>();
-
+        values = new HashSet<>();
         countValuesForAllPermutations();
     }
 
     private void countValuesForAllPermutations() {
-        for (String permutation : getPermutationsNotRepetitions(new int[] {x, y, z})) {
+        for (String permutation : getPermutationsNoRepetitions(new int[] {x, y, z})) {
             int a, b, c;
             a = Character.getNumericValue(permutation.charAt(0));
             b = Character.getNumericValue(permutation.charAt(1));
@@ -113,7 +112,7 @@ public class Combination {
         return isZero(a % b);
     }
 
-    Set<Integer> getValues() {
+    Collection<Integer> getValues() {
         return values;
     }
 

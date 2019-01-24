@@ -27,11 +27,11 @@ final class Util {
         return table;
     }
 
-    static List<String> getPermutationsNotRepetitions(int[] arr) {
-        return doGetPermutationsNotRepetitions(arr).stream().map(StringBuilder::toString).collect(Collectors.toList());
+    static List<String> getPermutationsNoRepetitions(int[] arr) {
+        return doGetPermutationsNoRepetitions(arr).stream().map(StringBuilder::toString).collect(Collectors.toList());
     }
 
-    private static List<StringBuilder> doGetPermutationsNotRepetitions(int[] arr) {
+    private static List<StringBuilder> doGetPermutationsNoRepetitions(int[] arr) {
         if (arr.length == 2) {
             StringBuilder sb1 = new StringBuilder();
             sb1.append(arr[0]);
@@ -44,14 +44,13 @@ final class Util {
             return Arrays.asList(sb1, sb2);
         }
         else {
-            List<StringBuilder> l = new ArrayList<>();
+            List<StringBuilder> result = new ArrayList<>();
             for (int i = 0; i < arr.length; i++) {
-
-                for (StringBuilder sb : doGetPermutationsNotRepetitions(excludingCopy(arr, i))) {
-                    l.add(sb.insert(0, arr[i]));
+                for (StringBuilder sb : doGetPermutationsNoRepetitions(excludingCopy(arr, i))) {
+                    result.add(sb.insert(0, arr[i]));
                 }
             }
-            return l;
+            return result;
         }
     }
 
