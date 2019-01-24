@@ -5,8 +5,17 @@ plugins {
 group 'tasks'
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = 1.10
+sourceCompatibility = 1.11
 
 repositories {
   mavenCentral()
+}
+
+jar {
+  manifest {
+    attributes(
+            'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+            'Main-Class': 'task.Main'
+    )
+  }
 }

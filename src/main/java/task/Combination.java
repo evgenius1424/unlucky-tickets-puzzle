@@ -1,11 +1,14 @@
-import java.util.Collection;
-import java.util.HashSet;
+package task;
+
 import java.util.Set;
 import java.util.TreeSet;
 
+import static java.lang.String.format;
+import static task.Util.getPermutationsNotRepetitions;
+
 public class Combination {
-    private int x, y, z;
-    private Set<Integer> values;
+    private final int x, y, z;
+    private final Set<Integer> values;
 
     Combination(int x, int y, int z) {
         this.x = x;
@@ -14,13 +17,11 @@ public class Combination {
 
         values = new TreeSet<>();
 
-        int[] arr = {x, y, z};
-        Set<String> permutations = new HashSet<>(PermutationsNoRepetition.getPermutationsList(arr));
-        countValuesForAllPermutations(permutations);
+        countValuesForAllPermutations();
     }
 
-    private void countValuesForAllPermutations(Collection<String> permutations) {
-        for (String permutation : permutations) {
+    private void countValuesForAllPermutations() {
+        for (String permutation : getPermutationsNotRepetitions(new int[] {x, y, z})) {
             int a, b, c;
             a = Character.getNumericValue(permutation.charAt(0));
             b = Character.getNumericValue(permutation.charAt(1));
@@ -116,8 +117,9 @@ public class Combination {
         return values;
     }
 
+
     @Override
     public String toString() {
-        return String.valueOf(x) + String.valueOf(y) + String.valueOf(z);
+        return format("Combination{x=%d, y=%d, z=%d, values=%s}", x, y, z, values);
     }
 }
