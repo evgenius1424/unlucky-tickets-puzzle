@@ -1,22 +1,16 @@
 package task;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static java.util.Collections.disjoint;
-import static java.util.stream.Collectors.toList;
 import static task.Util.getPermutationsWithRepetitions;
 
 public class Main {
     public static void main(String[] args) {
-        long time = System.currentTimeMillis();
+        long start = System.currentTimeMillis();
 
         var tickets = createUnluckyTickets();
-
-        System.out.println("Time: " + (System.currentTimeMillis() - time));
+        System.out.println("Elapsed: " + (System.currentTimeMillis() - start));
         System.out.println("Tickets: " + tickets.size());
     }
 
@@ -31,8 +25,8 @@ public class Main {
                 if (!disjoint(comb1.getValues(), comb2.getValues())) {
                     continue;
                 }
-                tickets.add(comb1.toString() + comb2.toString());
-                tickets.add(comb2.toString() + comb1.toString());
+                tickets.add(comb1 + comb2.toString());
+                tickets.add(comb2 + comb1.toString());
             }
         }
 
@@ -40,8 +34,8 @@ public class Main {
     }
 
     private static List<Combination> createCombinations() {
-        return Arrays.stream(getPermutationsWithRepetitions(new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 0}, 3))
-                .map(p -> new Combination(p[0], p[1], p[2])).collect(toList());
+        return Arrays.stream(getPermutationsWithRepetitions(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 0}, 3))
+                .map(p -> new Combination(p[0], p[1], p[2])).toList();
     }
 }
 
