@@ -1,11 +1,21 @@
 plugins {
   id 'java'
+  id 'application'
 }
 
-group 'tasks'
+application {
+  mainClassName = 'com.github.evgenius1424.Main'
+}
+
+group 'com.github.evgenius1424'
 version '1.0-SNAPSHOT'
 
 repositories {
   mavenCentral()
 }
 
+dependencies {
+}
+
+compileJava {
+}

@@ -1,10 +1,9 @@
-package task;
+package com.github.evgenius1424;
 
 import java.util.Collection;
 import java.util.HashSet;
 
-import static java.lang.String.format;
-import static task.Util.getPermutationsNoRepetitions;
+import static com.github.evgenius1424.Permutations.getPermutationsNoRepetitions;
 
 public class Combination {
     private final int x, y, z;
@@ -20,7 +19,7 @@ public class Combination {
     }
 
     private void countValuesForAllPermutations() {
-        for (String permutation : getPermutationsNoRepetitions(new int[] {x, y, z})) {
+        for (String permutation : getPermutationsNoRepetitions(new int[]{x, y, z})) {
             int a, b, c;
             a = Character.getNumericValue(permutation.charAt(0));
             b = Character.getNumericValue(permutation.charAt(1));
@@ -101,7 +100,9 @@ public class Combination {
 
 
     private void addValue(int value) {
-        if (value > -1) { values.add(value); }
+        if (value > -1) {
+            values.add(value);
+        }
     }
 
     private boolean isZero(int x) {
@@ -119,6 +120,6 @@ public class Combination {
 
     @Override
     public String toString() {
-        return format("Combination{x=%d, y=%d, z=%d, values=%s}", x, y, z, values);
+        return "" + x + y + z;
     }
 }

@@ -1,20 +1,20 @@
-package task;
+package com.github.evgenius1424;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-final class Util {
+public final class Permutations {
 
-    static int[][] getPermutationsWithRepetitions(int[] source, int variationLength) {
+    public static int[][] getPermutationsWithRepetitions(int[] source, int variationLength) {
         int srcLength = source.length;
-        int permutations = (int)Math.pow(srcLength, variationLength);
+        int permutations = (int) Math.pow(srcLength, variationLength);
 
         int[][] table = new int[permutations][variationLength];
 
         for (int i = 0; i < variationLength; i++) {
-            int t2 = (int)Math.pow(srcLength, i);
+            int t2 = (int) Math.pow(srcLength, i);
             for (int p1 = 0; p1 < permutations; ) {
                 for (int a : source) {
                     for (int p2 = 0; p2 < t2; p2++) {
@@ -27,11 +27,11 @@ final class Util {
         return table;
     }
 
-    static List<String> getPermutationsNoRepetitions(int[] arr) {
-        return doGetPermutationsNoRepetitions(arr).stream().map(StringBuilder::toString).collect(Collectors.toList());
+    public static List<String> getPermutationsNoRepetitions(int[] arr) {
+        return getPermutationsNoRepetitionsHelper(arr).stream().map(StringBuilder::toString).collect(Collectors.toList());
     }
 
-    private static List<StringBuilder> doGetPermutationsNoRepetitions(int[] arr) {
+    private static List<StringBuilder> getPermutationsNoRepetitionsHelper(int[] arr) {
         if (arr.length == 2) {
             StringBuilder sb1 = new StringBuilder();
             sb1.append(arr[0]);
@@ -42,11 +42,10 @@ final class Util {
             sb2.append(arr[0]);
 
             return Arrays.asList(sb1, sb2);
-        }
-        else {
+        } else {
             List<StringBuilder> result = new ArrayList<>();
             for (int i = 0; i < arr.length; i++) {
-                for (StringBuilder sb : doGetPermutationsNoRepetitions(excludingCopy(arr, i))) {
+                for (StringBuilder sb : getPermutationsNoRepetitionsHelper(excludingCopy(arr, i))) {
                     result.add(sb.insert(0, arr[i]));
                 }
             }
