@@ -3,8 +3,9 @@ package com.github.evgenius1424;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
+import java.util.stream.Collectors;
 
-import static com.github.evgenius1424.Permutations.getPermutationsWithRepetitions;
 import static java.util.Collections.disjoint;
 
 public class Main {
@@ -13,12 +14,17 @@ public class Main {
         var tickets = createUnluckyTickets();
         System.out.println("Elapsed: " + (System.currentTimeMillis() - start));
         System.out.println("Tickets: " + tickets.size());
-        System.out.println(tickets.stream().sorted().toList());
+//        System.out.println(tickets.stream().sorted().toList());
     }
 
     private static Collection<String> createUnluckyTickets() {
-        var combinations = Arrays.stream(getPermutationsWithRepetitions(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 0}, 3))
-                .map(p -> new Combination(p[0], p[1], p[2]))
+        int combinationNumbers = 3;
+        int[] numbers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
+
+        int[][] permutationsWithRepetitions = getPermutationsWithRepetitions(numbers, combinationNumbers);
+
+        List<Combination> combinations = Arrays.stream(permutationsWithRepetitions)
+                .map(p -> new Combination(Arrays.stream(p).boxed().collect(Collectors.toList())))
                 .toList();
 
         Collection<String> tickets = new HashSet<>();
@@ -34,6 +40,26 @@ public class Main {
         }
 
         return tickets;
+    }
+
+    public static int[][] getPermutationsWithRepetitions(int[] source, int variationLength) {
+        int srcLength = source.length;
+        int permutations = (int) Math.pow(srcLength, variationLength);
+
+        int[][] table = new int[permutations][variationLength];
+
+        for (int i = 0; i < variationLength; i++) {
+            int t2 = (int) Math.pow(srcLength, i);
+            for (int p1 = 0; p1 < permutations; ) {
+                for (int a : source) {
+                    for (int p2 = 0; p2 < t2; p2++) {
+                        table[p1][i] = a;
+                        p1++;
+                    }
+                }
+            }
+        }
+        return table;
     }
 
 }

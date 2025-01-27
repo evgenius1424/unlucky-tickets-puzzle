@@ -1,17 +1,17 @@
 plugins {
-  id 'java'
-  id 'application'
+    id 'java'
+    id 'application'
 }
 
 application {
-  mainClassName = 'com.github.evgenius1424.Main'
+    mainClassName = 'com.github.evgenius1424.Main'
 }
 
 group 'com.github.evgenius1424'
 version '1.0-SNAPSHOT'
 
 repositories {
-  mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
