@@ -5,7 +5,7 @@ import java.util.*;
 public class PermutationUtils {
     public static <T> List<List<T>> getPermutationsNoRepetitions(List<T> items) {
         List<List<T>> permutations = new ArrayList<>();
-        permute(items, 0, permutations, new HashSet<>());
+        permute(new ArrayList<>(items), 0, permutations, new HashSet<>());
         return permutations;
     }
 
