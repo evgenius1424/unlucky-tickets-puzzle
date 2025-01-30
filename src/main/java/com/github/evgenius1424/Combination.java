@@ -4,14 +4,21 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static com.github.evgenius1424.PermutationUtils.getPermutationsNoRepetitions;
+
 public class Combination {
     private final Collection<Integer> values = new HashSet<>();
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     private final List<Integer> numbers;
 
     public Combination(List<Integer> numbers) {
         this.numbers = numbers;
-        List<int[]> permutations = getPermutationsNoRepetitions(numbers);
-        for (int[] permutation : permutations) {
+        List<List<Integer>> permutations = getPermutationsNoRepetitions(numbers);
+        for (List<Integer> permutation : permutations) {
             generateRPNValues(permutation);
         }
     }
@@ -20,7 +27,7 @@ public class Combination {
         return values;
     }
 
-    private void generateRPNValues(int[] nums) {
+    private void generateRPNValues(List<Integer> nums) {
         List<String> rpnExpressions = generateAllRPNExpressions(nums);
         for (String expression : rpnExpressions) {
             try {
@@ -28,20 +35,19 @@ public class Combination {
                 if (result >= 0) {
                     values.add(result);
                 }
-            } catch (ArithmeticException e) {
-                // Ignore invalid expressions
+            } catch (ArithmeticException ignored) {
             }
         }
     }
 
-    private List<String> generateAllRPNExpressions(int[] nums) {
-        return generateRPN(nums, 0, nums.length - 1);
+    private List<String> generateAllRPNExpressions(List<Integer> nums) {
+        return generateRPN(nums, 0, nums.size() - 1);
     }
 
-    private List<String> generateRPN(int[] nums, int start, int end) {
+    private List<String> generateRPN(List<Integer> nums, int start, int end) {
         List<String> expressions = new ArrayList<>();
         if (start == end) {
-            expressions.add(Integer.toString(nums[start]));
+            expressions.add(Integer.toString(nums.get(start)));
             return expressions;
         }
         for (int i = start; i < end; i++) {
@@ -92,36 +98,8 @@ public class Combination {
         return numbers.stream().map(String::valueOf).collect(Collectors.joining());
     }
 
-    private static List<int[]> getPermutationsNoRepetitions(List<Integer> numbers) {
-        List<int[]> permutations = new ArrayList<>();
-        permute(numbers.stream().mapToInt(i -> i).toArray(), 0, permutations, new HashSet<>());
-        return permutations;
-    }
-
-    private static void permute(int[] arr, int start, List<int[]> permutations, Set<String> seen) {
-        if (start == arr.length) {
-            String key = Arrays.toString(arr);
-            if (!seen.contains(key)) {
-                seen.add(key);
-                permutations.add(Arrays.copyOf(arr, arr.length));
-            }
-            return;
-        }
-        for (int i = start; i < arr.length; i++) {
-            swap(arr, start, i);
-            permute(arr, start + 1, permutations, seen);
-            swap(arr, start, i);
-        }
-    }
-
-    private static void swap(int[] arr, int i, int j) {
-        int temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
-    }
-
     public static void main(String[] args) {
-        Combination comb = new Combination(Arrays.asList(1, 2, 3));
+        Combination comb = new Combination(Arrays.asList(1, 2, 3, 4, 5, 6));
         System.out.println(comb.getValues());
     }
 }

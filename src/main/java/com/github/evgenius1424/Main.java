@@ -1,9 +1,6 @@
 package com.github.evgenius1424;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static java.util.Collections.disjoint;
@@ -14,18 +11,13 @@ public class Main {
         var tickets = createUnluckyTickets();
         System.out.println("Elapsed: " + (System.currentTimeMillis() - start));
         System.out.println("Tickets: " + tickets.size());
-//        System.out.println(tickets.stream().sorted().toList());
     }
 
     private static Collection<String> createUnluckyTickets() {
         int combinationNumbers = 3;
         int[] numbers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
 
-        int[][] permutationsWithRepetitions = getPermutationsWithRepetitions(numbers, combinationNumbers);
-
-        List<Combination> combinations = Arrays.stream(permutationsWithRepetitions)
-                .map(p -> new Combination(Arrays.stream(p).boxed().collect(Collectors.toList())))
-                .toList();
+        List<Combination> combinations = generateUniqueCombinations(numbers, combinationNumbers);
 
         Collection<String> tickets = new HashSet<>();
         for (int i = 0; i < combinations.size(); i++) {
@@ -33,8 +25,15 @@ public class Main {
                 var firstCombination = combinations.get(i);
                 var secondCombination = combinations.get(k);
                 if (disjoint(firstCombination.getValues(), secondCombination.getValues())) {
-                    tickets.add(firstCombination + secondCombination.toString());
-                    tickets.add(secondCombination + firstCombination.toString());
+                    List<String> firstPermutations = generatePermutations(firstCombination);
+                    List<String> secondPermutations = generatePermutations(secondCombination);
+
+                    for (String firstPermutation : firstPermutations) {
+                        for (String secondPermutation : secondPermutations) {
+                            tickets.add(firstPermutation + secondPermutation);
+                            tickets.add(secondPermutation + firstPermutation);
+                        }
+                    }
                 }
             }
         }
@@ -42,25 +41,41 @@ public class Main {
         return tickets;
     }
 
-    public static int[][] getPermutationsWithRepetitions(int[] source, int variationLength) {
-        int srcLength = source.length;
-        int permutations = (int) Math.pow(srcLength, variationLength);
-
-        int[][] table = new int[permutations][variationLength];
-
-        for (int i = 0; i < variationLength; i++) {
-            int t2 = (int) Math.pow(srcLength, i);
-            for (int p1 = 0; p1 < permutations; ) {
-                for (int a : source) {
-                    for (int p2 = 0; p2 < t2; p2++) {
-                        table[p1][i] = a;
-                        p1++;
-                    }
-                }
-            }
-        }
-        return table;
+    private static List<Combination> generateUniqueCombinations(int[] numbers, int combinationNumbers) {
+        List<Combination> combinations = new ArrayList<>();
+        generateCombinationsHelper(numbers, combinationNumbers, 0, new ArrayList<>(), combinations);
+        return combinations;
     }
 
-}
+    private static void generateCombinationsHelper(int[] numbers, int combinationNumbers, int start, List<Integer> current, List<Combination> combinations) {
+        if (current.size() == combinationNumbers) {
+            combinations.add(new Combination(new ArrayList<>(current)));
+            return;
+        }
 
+        for (int i = start; i < numbers.length; i++) {
+            current.add(numbers[i]);
+            generateCombinationsHelper(numbers, combinationNumbers, i, current, combinations);
+            current.remove(current.size() - 1);
+        }
+    }
+
+    private static List<String> generatePermutations(Combination combination) {
+        List<String> permutations = new ArrayList<>();
+        permute(combination.getNumbers(), 0, permutations);
+        return permutations;
+    }
+
+    private static void permute(List<Integer> numbers, int start, List<String> permutations) {
+        if (start == numbers.size() - 1) {
+            permutations.add(numbers.stream().map(String::valueOf).collect(Collectors.joining()));
+            return;
+        }
+
+        for (int i = start; i < numbers.size(); i++) {
+            Collections.swap(numbers, start, i); // Swap to create a new permutation
+            permute(numbers, start + 1, permutations);
+            Collections.swap(numbers, start, i); // Backtrack
+        }
+    }
+}
