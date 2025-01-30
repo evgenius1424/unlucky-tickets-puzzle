@@ -6,7 +6,7 @@ import java.util.stream.Stream;
 
 import static com.github.evgenius1424.PermutationUtils.getPermutationsNoRepetitions;
 
-public class Combination {
+public class TicketSide {
     private final Collection<Integer> values = new HashSet<>();
 
     public List<Integer> getNumbers() {
@@ -15,7 +15,7 @@ public class Combination {
 
     private final List<Integer> numbers;
 
-    public Combination(List<Integer> numbers) {
+    public TicketSide(List<Integer> numbers) {
         this.numbers = numbers;
         List<List<Integer>> permutations = getPermutationsNoRepetitions(numbers);
         for (List<Integer> permutation : permutations) {
@@ -99,7 +99,7 @@ public class Combination {
     }
 
     public static void main(String[] args) {
-        Combination comb = new Combination(Arrays.asList(1, 2, 3, 4, 5, 6));
+        TicketSide comb = new TicketSide(Arrays.asList(1, 2, 3, 4, 5, 6));
         System.out.println(comb.getValues());
     }
 }
