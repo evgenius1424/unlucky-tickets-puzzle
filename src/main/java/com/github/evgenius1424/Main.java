@@ -1,6 +1,7 @@
 package com.github.evgenius1424;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.github.evgenius1424.UnluckyTickets.createUnluckyTickets;
 
@@ -35,5 +36,4 @@ public class Main {
             current.remove(current.size() - 1);
         }
     }
-
 }
