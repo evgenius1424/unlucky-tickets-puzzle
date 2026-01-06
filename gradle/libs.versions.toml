@@ -1,0 +1,29 @@
+[versions]
+# Java and Gradle
+java = "21"
+
+# Plugins
+lombok-plugin = "8.11"
+
+# Main dependencies
+lombok = "1.18.36"
+
+# Test dependencies
+junit = "5.11.4"
+assertj = "3.26.3"
+
+[libraries]
+# Lombok
+lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
+
+# Testing
+junit-bom = { module = "org.junit:junit-bom", version.ref = "junit" }
+junit-jupiter = { module = "org.junit.jupiter:junit-jupiter" }
+junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }
+assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertj" }
+
+[plugins]
+lombok = { id = "io.freefair.lombok", version.ref = "lombok-plugin" }
+
+[bundles]
+testing = ["junit-jupiter", "assertj-core"]

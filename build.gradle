@@ -1,7 +1,7 @@
 plugins {
     id 'java'
     id 'application'
-    id 'io.freefair.lombok' version '8.11'
+    alias(libs.plugins.lombok)
 }
 
 group = 'com.github.evgenius1424'
@@ -9,7 +9,7 @@ version = '1.0-SNAPSHOT'
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+        languageVersion = JavaLanguageVersion.of(libs.versions.java.get().toInteger())
     }
 }
 
@@ -23,19 +23,19 @@ repositories {
 
 dependencies {
     // JUnit 5 (Jupiter) for testing
-    testImplementation platform('org.junit:junit-bom:5.11.4')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    testImplementation platform(libs.junit.bom)
+    testImplementation libs.junit.jupiter
+    testRuntimeOnly libs.junit.platform.launcher
 
-    // AssertJ for fluent assertions
-    testImplementation 'org.assertj:assertj-core:3.26.3'
+    // Test bundle (JUnit + AssertJ)
+    testImplementation libs.bundles.testing
 
     // Lombok for reducing boilerplate
-    compileOnly 'org.projectlombok:lombok:1.18.36'
-    annotationProcessor 'org.projectlombok:lombok:1.18.36'
+    compileOnly libs.lombok
+    annotationProcessor libs.lombok
 
-    testCompileOnly 'org.projectlombok:lombok:1.18.36'
-    testAnnotationProcessor 'org.projectlombok:lombok:1.18.36'
+    testCompileOnly libs.lombok
+    testAnnotationProcessor libs.lombok
 }
 
 tasks.named('test') {
@@ -54,12 +54,12 @@ tasks.named('test') {
 
 tasks.named('compileJava') {
     options.encoding = 'UTF-8'
-    options.release = 21
+    options.release = libs.versions.java.get().toInteger()
 }
 
 tasks.named('compileTestJava') {
     options.encoding = 'UTF-8'
-    options.release = 21
+    options.release = libs.versions.java.get().toInteger()
 }
 
 tasks.named('javadoc') {
