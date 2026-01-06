@@ -1,30 +1,67 @@
 plugins {
     id 'java'
     id 'application'
-    id 'io.freefair.lombok' version '6.6.3'
+    id 'io.freefair.lombok' version '8.11'
+}
+
+group = 'com.github.evgenius1424'
+version = '1.0-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
 }
 
 application {
-    mainClassName = 'com.github.evgenius1424.Main'
+    mainClass = 'com.github.evgenius1424.Main'
 }
-
-group 'com.github.evgenius1424'
-version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
-    testImplementation 'org.assertj:assertj-core:3.24.2'
-    compileOnly 'org.projectlombok:lombok:1.18.28'
-    annotationProcessor 'org.projectlombok:lombok:1.18.28'
+    // JUnit 5 (Jupiter) for testing
+    testImplementation platform('org.junit:junit-bom:5.11.4')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    // AssertJ for fluent assertions
+    testImplementation 'org.assertj:assertj-core:3.26.3'
+
+    // Lombok for reducing boilerplate
+    compileOnly 'org.projectlombok:lombok:1.18.36'
+    annotationProcessor 'org.projectlombok:lombok:1.18.36'
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.36'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.36'
 }
 
-tasks.test {
+tasks.named('test') {
     useJUnitPlatform()
+
+    // Enable parallel execution
+    maxParallelForks = Runtime.runtime.availableProcessors().intdiv(2) ?: 1
+
+    // Show test results
+    testLogging {
+        events "passed", "skipped", "failed"
+        exceptionFormat "full"
+        showStandardStreams = false
+    }
 }
 
-compileJava {
+tasks.named('compileJava') {
+    options.encoding = 'UTF-8'
+    options.release = 21
+}
+
+tasks.named('compileTestJava') {
+    options.encoding = 'UTF-8'
+    options.release = 21
+}
+
+tasks.named('javadoc') {
+    options.encoding = 'UTF-8'
 }
